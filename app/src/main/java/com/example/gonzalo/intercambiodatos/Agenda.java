@@ -100,7 +100,7 @@ public class Agenda extends Activity {
         nombre = etAddNom.getText().toString();
         telefono = etAddTel.getText().toString();
 
-        if (!exitste(nombre)) {
+        if (!exitste(nombre) && !nombre.isEmpty()) {
             agenda.add(new Contacto(nombre, telefono));
             Toast.makeText(getApplicationContext(), "Contacto: " + (new Contacto(nombre, telefono)).toString() + " creado", Toast.LENGTH_SHORT).show();
             etAddNom.setText("");
