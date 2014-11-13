@@ -28,9 +28,7 @@ public class EditaContacto extends Activity {
         etTel = (EditText) findViewById(R.id.etTelEdit);
         tvNom = (TextView) findViewById(R.id.nomContato);
 
-        Intent intent = this.getIntent();
-        Bundle bundle = intent.getExtras();
-        Contacto c = (Contacto) bundle.get("contacto");
+        Contacto c = (Contacto) getIntent().getSerializableExtra("contacto");
 
 
         nombre = c.getNombre();
@@ -54,7 +52,8 @@ public class EditaContacto extends Activity {
                 c = new Contacto(nombre, etTel.getText().toString());
                 Agenda.agenda.set(i, c);
 
-                getIntent().putExtra("contacto", nombre);
+                Intent intent = new Intent(EditaContacto.this, Agenda.class);
+                intent.putExtra("contacto", c);
                 setResult(RESULT_OK, getIntent());
                 finish();
             }

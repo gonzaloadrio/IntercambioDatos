@@ -3,12 +3,14 @@ package com.example.gonzalo.intercambiodatos;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,19 +51,13 @@ public class Agenda extends Activity {
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // Check which request we're responding to
-        if (requestCode == 1) {
-            // Make sure the request was successful
+        Log.d("ONRESULT", "On cativity Result ejecutado");
+        if (requestCode == 1 && data != null) {
             if (resultCode == RESULT_OK) {
-                // The user picked a contact.
-                // The Intent's data Uri identifies which contact was selected.
-
-                // Do something with the contact here (bigger example below)
-                Bundle b = data.getExtras();
+                Contacto c = (Contacto) data.getSerializableExtra("contacto");
                 int pos = -1;
-                String nombre = b.get("contacto").toString();
                 for (int i = 0; i < agenda.size(); i++) {
-                    if (agenda.get(i).getNombre().equalsIgnoreCase(nombre)) {
+                    if (agenda.get(i).getNombre().equalsIgnoreCase(c.getNombre())) {
                         pos = i;
                     }
                 }
@@ -72,7 +68,7 @@ public class Agenda extends Activity {
     }
 
     private void accionPulsoEditar() {
-        String nombre, telefono;
+        String nombre;
         nombre = etSearchNom.getText().toString();
         int pos = -1;
         for (int i = 0; i < agenda.size(); i++) {
