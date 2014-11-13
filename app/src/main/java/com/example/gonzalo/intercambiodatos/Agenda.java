@@ -107,7 +107,7 @@ public class Agenda extends Activity {
             etAddTel.setText("");
 
         } else {
-            Toast.makeText(getApplicationContext(), "Este contacto ya existe", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Este contacto ya existe o esta vacio", Toast.LENGTH_SHORT).show();
         }
     }
 
