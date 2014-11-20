@@ -2,15 +2,19 @@ package com.example.gonzalo.intercambiodatos;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +26,7 @@ public class Agenda extends Activity {
 
     Button bAdd, bEdit;
     EditText etAddNom, etAddTel, etSearchNom;
+    ListView listView;
 
 
     @Override
@@ -44,14 +49,67 @@ public class Agenda extends Activity {
         bEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                accionPulsoEditar();
+                accionPulsoEditar(etSearchNom.getText().toString());
             }
         });
 
+        listView = (ListView) findViewById(R.id.listView);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                // ListView Clicked item index
+                int itemPosition = position;
+
+                // ListView Clicked item value
+                Contacto c = (Contacto) listView.getItemAtPosition(position);
+
+                // Show Alert
+                Toast.makeText(getApplicationContext(),
+                        "Position :" + itemPosition + "  ListItem : " + c.toString(), Toast.LENGTH_SHORT)
+                        .show();
+
+                accionPulsoEditar(c.getNombre());
+            }
+
+        });
+        actualizarLista();
+
     }
 
+    private void actualizarLista() {
+        ArrayList<String> nombres = new ArrayList<String>();
+        for (int i = 0; i < agenda.size(); i++) {
+            nombres.add(agenda.get(i).getNombre());
+        }
+//        Map<String,String> telefonos = new HashMap<String, String>();
+//        for (int i = 0; i < agenda.size(); i++) {
+//            telefonos.put(agenda.get(i).getNombre(),agenda.get(i).getTelefono());
+//            //telefonos.add(agenda.get(i).getTelefono());
+//        }
+
+        ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_2, android.R.id.text1, agenda) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView text1 = (TextView) view.findViewById(android.R.id.text1);
+                TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+                text1.setTextColor(Color.DKGRAY);
+                text2.setTextColor(Color.DKGRAY);
+                text1.setText(agenda.get(position).getNombre());
+                text2.setText(agenda.get(position).getTelefono());
+                return view;
+            }
+        };
+        listView.setAdapter(adapter);
+
+    }
+
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d("ONRESULT", "On cativity Result ejecutado");
+        //Log.d("ONRESULT", "On cativity Result ejecutado");
         if (requestCode == 1 && data != null) {
             if (resultCode == RESULT_OK) {
                 Contacto c = (Contacto) data.getSerializableExtra("contacto");
@@ -67,9 +125,9 @@ public class Agenda extends Activity {
         }
     }
 
-    private void accionPulsoEditar() {
-        String nombre;
-        nombre = etSearchNom.getText().toString();
+
+    private void accionPulsoEditar(String nombre) {
+
         int pos = -1;
         for (int i = 0; i < agenda.size(); i++) {
             if (agenda.get(i).getNombre().equalsIgnoreCase(nombre)) {
@@ -101,6 +159,8 @@ public class Agenda extends Activity {
             Toast.makeText(getApplicationContext(), "Contacto: " + (new Contacto(nombre, telefono)).toString() + " creado", Toast.LENGTH_SHORT).show();
             etAddNom.setText("");
             etAddTel.setText("");
+            actualizarLista();
+            etAddNom.requestFocus();
 
         } else {
             Toast.makeText(getApplicationContext(), "Este contacto ya existe o esta vacio", Toast.LENGTH_SHORT).show();

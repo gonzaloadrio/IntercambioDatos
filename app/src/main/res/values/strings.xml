@@ -10,5 +10,6 @@
     <string name="add">Añadir</string>
     <string name="edit">Editar</string>
     <string name="save">Guardar</string>
+    <string name="espacio">-</string>
 
 </resources>
