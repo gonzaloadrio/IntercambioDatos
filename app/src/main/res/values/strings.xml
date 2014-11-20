@@ -11,5 +11,6 @@
     <string name="edit">Editar</string>
     <string name="save">Guardar</string>
     <string name="espacio">-</string>
+    <string name="bDel">Eliminar</string>
 
 </resources>

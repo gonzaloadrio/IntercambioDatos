@@ -14,6 +14,7 @@ import android.widget.TextView;
 public class EditaContacto extends Activity {
 
     Button bSave;
+    Button bDel;
     EditText etTel;
     TextView tvNom;
     String nombre;
@@ -24,6 +25,7 @@ public class EditaContacto extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edita_contacto);
 
+        bDel = (Button) findViewById(R.id.bDel);
         bSave = (Button) findViewById(R.id.bSave);
         etTel = (EditText) findViewById(R.id.etTelEdit);
         tvNom = (TextView) findViewById(R.id.nomContato);
@@ -36,6 +38,13 @@ public class EditaContacto extends Activity {
         etTel.setText(c.getTelefono());
 
 
+        bDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                borrar(nombre);
+            }
+        });
+
         bSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,6 +53,17 @@ public class EditaContacto extends Activity {
         });
 
 
+    }
+
+    private void borrar(String nombre) {
+        for (int i = 0; i < Agenda.agenda.size(); i++) {
+            if (Agenda.agenda.get(i).getNombre().equalsIgnoreCase(nombre)) {
+                Agenda.agenda.remove(i);
+                Intent intent = new Intent(EditaContacto.this, Agenda.class);
+                setResult(RESULT_CANCELED,getIntent());
+                finish();
+            }
+        }
     }
 
     private void guardarMod(String nombre) {

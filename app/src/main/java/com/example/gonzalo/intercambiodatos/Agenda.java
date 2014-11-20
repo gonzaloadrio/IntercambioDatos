@@ -125,6 +125,19 @@ public class Agenda extends Activity {
                 Toast.makeText(getApplicationContext(), "Contacto: " + agenda.get(pos) + " editado", Toast.LENGTH_SHORT).show();
                 etSearchNom.setText("");
             }
+            if (resultCode == RESULT_CANCELED) {
+//                Contacto c = (Contacto) data.getSerializableExtra("contacto");
+//                int pos = -1;
+//                for (int i = 0; i < agenda.size(); i++) {
+//                    if (agenda.get(i).getNombre().equalsIgnoreCase(c.getNombre())) {
+//                        pos = i;
+//                    }
+//                }
+//                Toast.makeText(getApplicationContext(), "Contacto: " + agenda.get(pos) + " editado", Toast.LENGTH_SHORT).show();
+//                etSearchNom.setText("");
+                Toast.makeText(getApplicationContext(), "Contacto eliminado", Toast.LENGTH_SHORT).show();
+                actualizarLista();
+            }
         }
     }
 
