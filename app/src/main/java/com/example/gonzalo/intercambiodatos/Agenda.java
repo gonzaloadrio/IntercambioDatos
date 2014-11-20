@@ -80,26 +80,29 @@ public class Agenda extends Activity {
     }
 
     private void actualizarLista() {
-        ArrayList<String> nombres = new ArrayList<String>();
-        for (int i = 0; i < agenda.size(); i++) {
-            nombres.add(agenda.get(i).getNombre());
-        }
+//        ArrayList<String> nombres = new ArrayList<String>();
+//        for (int i = 0; i < agenda.size(); i++) {
+//            nombres.add(agenda.get(i).getNombre());
+//        }
 //        Map<String,String> telefonos = new HashMap<String, String>();
 //        for (int i = 0; i < agenda.size(); i++) {
 //            telefonos.put(agenda.get(i).getNombre(),agenda.get(i).getTelefono());
 //            //telefonos.add(agenda.get(i).getTelefono());
 //        }
 
-        ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_2, android.R.id.text1, agenda) {
+        ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(), R.layout.simple_list_item_3, R.id.text1, agenda) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
-                TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-                TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+                TextView text1 = (TextView) view.findViewById(R.id.text1);
+                TextView text2 = (TextView) view.findViewById(R.id.text2);
+                TextView text3 = (TextView) view.findViewById(R.id.text3);
                 text1.setTextColor(Color.DKGRAY);
                 text2.setTextColor(Color.DKGRAY);
+                text3.setTextColor(Color.DKGRAY);
                 text1.setText(agenda.get(position).getNombre());
                 text2.setText(agenda.get(position).getTelefono());
+                text3.setText("tercer elemento");
                 return view;
             }
         };

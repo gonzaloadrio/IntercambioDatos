@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    <TableRow>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true">
 
         <TextView
-            android:id="@+id/txt1"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_gravity="left|center_vertical"
-            android:text="t1" />
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/tv1" />
 
         <TextView
-            android:id="@+id/txt2"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical|right"
-            android:text="t2" />
-
-    </TableRow>
-</TableLayout>
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/tv2" />
+    </LinearLayout>
+</RelativeLayout>
