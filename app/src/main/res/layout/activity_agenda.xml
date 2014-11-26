@@ -37,28 +37,37 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/etNomEd"
-            android:layout_marginTop="40dp"
-            android:hint="@string/intro_nom" />
-
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/edit"
-            android:id="@+id/bEd"
+            android:text="@string/bVer"
+            android:id="@+id/bVer"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp" />
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/listView"
-            android:layout_gravity="center_horizontal" />
+        <!--<EditText-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:inputType="textPersonName"-->
+            <!--android:ems="10"-->
+            <!--android:id="@+id/etNomEd"-->
+            <!--android:layout_marginTop="40dp"-->
+            <!--android:hint="@string/intro_nom" />-->
+
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/edit"-->
+            <!--android:id="@+id/bEd"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:layout_marginTop="30dp" />-->
+
+        <!--<ListView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/listView"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:longClickable="true" />-->
     </LinearLayout>
 
 </RelativeLayout>

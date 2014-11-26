@@ -12,5 +12,7 @@
     <string name="save">Guardar</string>
     <string name="espacio">-</string>
     <string name="bDel">Eliminar</string>
+    <string name="title_activity_lista">Lista</string>
+    <string name="bVer">ver</string>
 
 </resources>
