@@ -28,8 +28,6 @@ public class Lista extends ListActivity {
         setContentView(R.layout.activity_lista);
 
         agenda = (List<Contacto>) getIntent().getSerializableExtra("agenda");
-
-
         listView = (ListView) findViewById(android.R.id.list);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
