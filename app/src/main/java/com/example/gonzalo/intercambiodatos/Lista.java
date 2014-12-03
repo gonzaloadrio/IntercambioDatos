@@ -37,8 +37,6 @@ public class Lista extends ListActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                int itemPosition = position;
-
                 final Contacto c = (Contacto) listView.getItemAtPosition(position);
 
                 accionPulsoEditar(c.getNombre());
