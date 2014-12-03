@@ -28,6 +28,14 @@ public class Agenda extends Activity {
         bVer = (Button) findViewById(R.id.bVer);
         etAddNom = (EditText) findViewById(R.id.etNomAdd);
         etAddTel = (EditText) findViewById(R.id.etTelAdd);
+
+        bAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         bAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
