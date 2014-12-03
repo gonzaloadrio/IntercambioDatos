@@ -6,6 +6,7 @@ import java.io.Serializable;
  * Created by gonzalo on 12/11/14.
  */
 public class Contacto implements Serializable {
+
     String nombre;
     String telefono;
 

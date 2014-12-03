@@ -30,7 +30,6 @@ public class EditaContacto extends Activity {
         bSave = (Button) findViewById(R.id.bSave);
         etTel = (EditText) findViewById(R.id.etTelEdit);
         tvNom = (TextView) findViewById(R.id.nomContato);
-
         agenda = (List<Contacto>) getIntent().getSerializableExtra("agenda");
 
         pos = getIntent().getIntExtra("pos", -1);
@@ -50,8 +49,6 @@ public class EditaContacto extends Activity {
                 guardarMod();
             }
         });
-
-
     }
 
     private void borrar() {
