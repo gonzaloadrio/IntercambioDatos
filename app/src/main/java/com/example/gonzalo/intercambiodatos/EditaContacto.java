@@ -32,7 +32,6 @@ public class EditaContacto extends Activity {
         tvNom = (TextView) findViewById(R.id.nomContato);
 
         agenda = (List<Contacto>) getIntent().getSerializableExtra("agenda");
-
         pos = getIntent().getIntExtra("pos", -1);
 
         tvNom.setText(agenda.get(pos).getNombre());

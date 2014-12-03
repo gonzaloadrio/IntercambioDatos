@@ -20,6 +20,7 @@ public class Contacto implements Serializable {
                 "nombre='" + nombre + '\'' +
                 ", telefono='" + telefono + '\'' +
                 '}';
+        
     }
 
     public String getNombre() {
