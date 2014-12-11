@@ -19,6 +19,7 @@ public class Agenda extends Activity {
     Button bAdd, bVer;
     EditText etAddNom, etAddTel;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
