@@ -15,5 +15,6 @@
     <string name="title_activity_lista">Lista</string>
     <string name="bVer">ver</string>
     <string name="b">adasd</string>
+    <string name="title_activity_activityborrar">Activity Borrar</string>
 
 </resources>

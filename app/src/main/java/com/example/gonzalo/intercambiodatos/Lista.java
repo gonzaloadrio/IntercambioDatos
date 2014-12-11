@@ -58,8 +58,13 @@ public class Lista extends ListActivity {
 
     private void accionPulsoBorrar(int posicion) {
 
-        agenda.remove(posicion);
-        actualizarLista();
+        Intent intent = new Intent(this.getApplicationContext(), ActivityBorrar.class);
+
+        intent.putExtra("contacto", agenda.get(posicion));
+        startActivityForResult(intent, 2);
+
+//        agenda.remove(posicion);
+//        actualizarLista();
 
     }
 
@@ -128,6 +133,17 @@ public class Lista extends ListActivity {
                 Toast.makeText(getApplicationContext(), "Contacto eliminado", Toast.LENGTH_SHORT).show();
 
             }
+        } else if (requestCode == 2 && data != null) {
+            if (resultCode == RESULT_OK) {
+                Contacto c = (Contacto) data.getSerializableExtra("contacto");
+                for (int i = 0; i < agenda.size(); i++) {
+                    if (agenda.get(i).getNombre().equalsIgnoreCase(c.getNombre())) {
+                        agenda.remove(i);
+                    }
+                }
+                Toast.makeText(getApplicationContext(), "Contacto eliminado", Toast.LENGTH_SHORT).show();
+
+            }
         }
         actualizarLista();
     }
@@ -157,11 +173,11 @@ public class Lista extends ListActivity {
         switch (item.getItemId()) {
             case R.id.edit:
                 accionPulsoEditar(agenda.get(info.position).getNombre());
-                Log.d("MENU","EDITA " + info.position);
+                Log.d("MENU", "EDITA " + info.position);
                 return true;
             case R.id.delete:
                 accionPulsoBorrar(info.position);
-                Log.d("MENU","ELIMINA");
+                Log.d("MENU", "ELIMINA");
                 return true;
             default:
                 return super.onContextItemSelected(item);

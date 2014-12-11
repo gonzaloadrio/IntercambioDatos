@@ -25,6 +25,10 @@
             android:name="com.example.gonzalo.intercambiodatos.Lista"
             android:label="@string/title_activity_lista" >
         </activity>
+        <activity
+            android:name="com.example.gonzalo.intercambiodatos.ActivityBorrar"
+            android:label="@string/title_activity_activityborrar" >
+        </activity>
     </application>
 
 </manifest>
