@@ -38,25 +38,6 @@ public class Lista extends ListActivity {
 
         registerForContextMenu(listView);
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//                final Contacto c = (Contacto) listView.getItemAtPosition(position);
-//
-//                accionPulsoBorrar(c.getNombre());
-//            }
-//
-//        });
-//
-//        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//                return false;
-//            }
-//        });
         actualizarLista();
 
     }
@@ -65,23 +46,7 @@ public class Lista extends ListActivity {
 
         agenda.remove(posicion);
         actualizarLista();
-//        int pos = -1;
-//        for (int i = 0; i < agenda.size(); i++) {
-//            if (agenda.get(i).getNombre().equalsIgnoreCase(nombre)) {
-//                pos = i;
-//            }
-//        }
-//
-//        if (exitste(nombre)) {
-//            Intent intent = new Intent(this.getApplicationContext(), EditaContacto.class);
-//
-//            intent.putExtra("agenda", (java.io.Serializable) agenda);
-//            intent.putExtra("pos", pos);
-//            startActivityForResult(intent, 2);
-//
-//        } else {
-//            Toast.makeText(getApplicationContext(), "Este contacto no existe", Toast.LENGTH_SHORT).show();
-//        }
+
     }
 
     private void accionPulsoEditar(String nombre) {
