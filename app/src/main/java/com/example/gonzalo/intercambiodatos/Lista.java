@@ -4,7 +4,11 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.KeyEvent;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -32,21 +36,52 @@ public class Lista extends ListActivity {
 
         listView = (ListView) findViewById(android.R.id.list);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        registerForContextMenu(listView);
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                int itemPosition = position;
-
-                final Contacto c = (Contacto) listView.getItemAtPosition(position);
-
-                accionPulsoEditar(c.getNombre());
-            }
-
-        });
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//                final Contacto c = (Contacto) listView.getItemAtPosition(position);
+//
+//                accionPulsoBorrar(c.getNombre());
+//            }
+//
+//        });
+//
+//        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//                return false;
+//            }
+//        });
         actualizarLista();
 
+    }
+
+    private void accionPulsoBorrar(int posicion) {
+
+        agenda.remove(posicion);
+        actualizarLista();
+//        int pos = -1;
+//        for (int i = 0; i < agenda.size(); i++) {
+//            if (agenda.get(i).getNombre().equalsIgnoreCase(nombre)) {
+//                pos = i;
+//            }
+//        }
+//
+//        if (exitste(nombre)) {
+//            Intent intent = new Intent(this.getApplicationContext(), EditaContacto.class);
+//
+//            intent.putExtra("agenda", (java.io.Serializable) agenda);
+//            intent.putExtra("pos", pos);
+//            startActivityForResult(intent, 2);
+//
+//        } else {
+//            Toast.makeText(getApplicationContext(), "Este contacto no existe", Toast.LENGTH_SHORT).show();
+//        }
     }
 
     private void accionPulsoEditar(String nombre) {
@@ -119,15 +154,38 @@ public class Lista extends ListActivity {
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)
-    {
-        if ((keyCode == KeyEvent.KEYCODE_BACK))
-        {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
             Intent intent = new Intent(Lista.this, Agenda.class);
             intent.putExtra("agenda", (java.io.Serializable) agenda);
             setResult(RESULT_OK, intent);
             finish();
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.context_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId()) {
+            case R.id.edit:
+                accionPulsoEditar(agenda.get(info.position).getNombre());
+                Log.d("MENU","EDITA " + info.position);
+                return true;
+            case R.id.delete:
+                accionPulsoBorrar(info.position);
+                Log.d("MENU","ELIMINA");
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 }
