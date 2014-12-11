@@ -38,6 +38,20 @@ public class Lista extends ListActivity {
 
         registerForContextMenu(listView);
 
+
+//     EVENTO PARA LANZAR LA ACTIVITY EDITACONTACTO CON UN SOLO CLICK
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//                final Contacto c = (Contacto) listView.getItemAtPosition(position);
+//
+//                accionPulsoEditar(c.getNombre());
+//            }
+//
+//        });
+//
         actualizarLista();
 
     }
